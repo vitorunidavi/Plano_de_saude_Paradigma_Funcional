@@ -85,25 +85,50 @@ Para ilustrar a aplicação das regras, considere o seguinte fluxo de dados:
 
 ---
 
+Markdown
+
+---
 ## 🚀 Guia de Instalação e Execução
 
-### 1. Estrutura de Arquivos
+O projeto é executado inteiramente no navegador, aproveitando o sistema de módulos JavaScript (ES Modules).
 
-O projeto utiliza o sistema de módulos JavaScript (ES Modules). Certifique-se de que a pasta do seu projeto contém a seguinte estrutura:
+### 1. Clonar o Repositório
 
-plano-de-saude-funcional/ ├── index.html (Interface e CSS) ├── index.js (Fluxo de processamento e UI) └── regras.js (Funções Puras e Tabelas de Dados)
+Obtenha uma cópia do código-fonte utilizando o comando `git clone` no seu terminal:
 
-### 2. Execução (No Navegador)
+```bash
 
-1. No VS Code, clique com o botão direito no arquivo **`index.html`**.
-2. Selecione **"Open with Live Server"**.
-3. A aplicação será aberta no seu navegador.
+git clone [https://github.com/vitorunidavi/Plano_de_saude_Paradigma_Funcional.git](https://github.com/vitorunidavi/Plano_de_saude_Paradigma_Funcional.git)
+cd Plano_de_saude_Paradigma_Funcional
+
+2. Instalação de Ferramentas (VS Code)
+Para garantir que o import/export funcione corretamente, é necessário rodar o projeto em um servidor local.
+
+Instale a Extensão Live Server: No VS Code, procure e instale a extensão Live Server (Autor: Ritwick Dey).
+
+3. Estrutura de Arquivos
+A pasta do projeto contém a estrutura modular necessária para a execução:
+
+plano-de-saude-funcional/
+├── index.html     (Interface e CSS)
+├── index.js       (Fluxo de processamento e UI)
+└── regras.js      (Funções Puras e Tabelas de Dados)
+
+4. Execução (No Navegador)
+Abra a pasta do projeto no VS Code.
+
+Clique com o botão direito no arquivo index.html.
+
+Selecione "Open with Live Server".
+
+A aplicação será aberta no seu navegador, pronta para testar o fluxo funcional.
 
 ---
 
 ## 🖋️ Créditos
 
 Desenvolvido por:
+
 * Vitor Hugo Tavares
 * Gustavo Borgonha
 
