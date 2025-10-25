@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Saúde Funcional - Interface</title>
+    <style>
+    /* Estilos globais e cores de base */
+    :root {
+        --cor-primaria: #007bff; /* Azul forte */
+        --cor-secundaria: #6c757d; /* Cinza */
+        --cor-sucesso: #28a745; /* Verde */
+        --cor-fundo: #f4f7f9; /* Cinza claro/Quase branco */
+        --cor-borda: #dee2e6;
+        --cor-destaque: #eaf4ff; /* Azul claro para cards */
+    }
+
+    body { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        padding: 40px; 
+        background-color: var(--cor-fundo); 
+        color: #333;
+    }
+    
+    .container { 
+        max-width: 900px; 
+        margin: auto; 
+        background: white; 
+        padding: 30px; 
+        border-radius: 12px; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Sombra mais suave */
+    }
+    
+    h1 { 
+        color: var(--cor-primaria); 
+        border-bottom: 2px solid var(--cor-borda); 
+        padding-bottom: 15px; 
+        margin-bottom: 25px;
+        font-weight: 300; /* Mais leve */
+    }
+    
+    h2 { 
+        color: #555; 
+        margin-top: 0;
+        font-size: 1.5em;
+    }
+    
+    h3, h4 {
+        color: #444;
+        margin-top: 20px;
+    }
+
+    /* Estilos dos Formulários e Seções */
+    .form-section, .results-section { 
+        margin-bottom: 30px; 
+        padding: 20px; 
+        border: 1px solid var(--cor-borda); 
+        border-radius: 8px; 
+        background-color: #ffffff;
+    }
+    
+    .input-group label { 
+        display: block; 
+        margin-top: 15px;
+        margin-bottom: 5px; 
+        font-weight: bold; 
+        color: var(--cor-secundaria);
+    }
+    
+    .input-group input[type="text"], 
+    .input-group input[type="number"], 
+    .input-group select { 
+        padding: 10px; 
+        margin-bottom: 10px; 
+        width: calc(50% - 10px); 
+        box-sizing: border-box; 
+        border: 1px solid var(--cor-borda);
+        border-radius: 4px;
+        transition: border-color 0.3s;
+    }
+    
+    .input-group input:focus, .input-group select:focus {
+        border-color: var(--cor-primaria);
+        outline: none;
+    }
+
+    /* Estilos dos Botões */
+    button { 
+        width: 100%; 
+        padding: 12px; 
+        margin-top: 10px;
+        background-color: var(--cor-primaria); 
+        color: white; 
+        border: none; 
+        border-radius: 6px;
+        cursor: pointer; 
+        font-size: 1em;
+        transition: background-color 0.3s, transform 0.1s;
+    }
+    
+    button:hover { 
+        background-color: #0056b3; 
+        transform: translateY(-1px);
+    }
+    
+    #processar-btn {
+        background-color: var(--cor-sucesso);
+        margin-top: 20px;
+        padding: 15px;
+        font-weight: bold;
+    }
+    
+    #processar-btn:hover {
+        background-color: #1e7e34;
+    }
+
+    /* Listas de Beneficiários e Procedimentos */
+    .beneficiary-list div { 
+        background: var(--cor-fundo); 
+        padding: 12px; 
+        margin-top: 8px; 
+        border-radius: 6px; 
+        border-left: 5px solid var(--cor-primaria);
+    }
+    
+    #procedimentos-list {
+        list-style: none; /* Remove bolinhas padrão */
+        padding-left: 0;
+        margin-top: 10px;
+    }
+
+    #procedimentos-list li {
+        padding: 5px 0;
+        border-bottom: 1px dotted var(--cor-borda);
+    }
+
+    /* Estilos dos Resultados */
+    .result-card { 
+        border: 2px solid var(--cor-primaria); 
+        padding: 20px; 
+        margin-top: 20px; 
+        border-radius: 8px; 
+        background: var(--cor-destaque); /* Fundo azul claro */
+    }
+    
+    .result-card h2 {
+        color: #333;
+        border-bottom: 1px dashed var(--cor-primaria);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .result-card p { margin: 8px 0; }
+    
+    .invalid-data { color: #dc3545; font-weight: bold; } /* Vermelho forte para erros */
+    .valid-data { color: var(--cor-sucesso); font-weight: bold; } /* Verde para valores finais */
+    
+    .details { 
+        margin-top: 15px;
+        margin-left: 10px; 
+        padding-left: 10px;
+        border-left: 3px solid #ccc;
+        font-size: 0.9em; 
+    }
+    /* ... Outros estilos ... */
+
+    /* Estilos para o Rodapé */
+    footer {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 15px;
+        border-top: 1px solid var(--cor-borda);
+        color: var(--cor-secundaria);
+        font-size: 0.9em;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Cálculo de Plano de Saúde Funcional</h1>
+
+        <div class="form-section">
+            <h2>1. Adicionar Beneficiário</h2>
+            <div class="input-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" placeholder="Nome do Beneficiário">
+                <label for="idade">Idade:</label>
+                <input type="number" id="idade" placeholder="Idade" min="0" style="width: calc(50% - 10px);">
+            </div>
+
+            <div id="procedimento-inputs">
+                <h3>Procedimentos Utilizados (Mensal)</h3>
+                <div class="input-group">
+                    <label for="proc-nome">Procedimento:</label>
+                    <select id="proc-nome">
+                        <option value="" disabled selected>Selecione o Procedimento</option>
+                        <option value="Consulta Clínica">Consulta Clínica</option>
+                        <option value="Exame Laboratorial Simples">Exame Laboratorial Simples</option>
+                        <option value="Procedimento de Baixa Complexidade">Procedimento de Baixa Complexidade</option>
+                        <option value="Exame de Imagem">Exame de Imagem</option>
+                    </select>
+
+                    <label for="proc-valor">Valor de Referência (R$):</label>
+                    <input type="number" id="proc-valor" placeholder="Valor do Procedimento">
+                    <button id="add-procedimento-btn">Adicionar Procedimento</button>
+                </div>
+            </div>
+
+            <div id="current-procedimentos">
+                <h4>Procedimentos para este Beneficiário:</h4>
+                <ul id="procedimentos-list">
+                    </ul>
+            </div>
+
+            <button id="add-beneficiario-btn">Adicionar Beneficiário à Lista</button>
+        </div>
+
+        <div class="form-section">
+            <h2>2. Lista de Beneficiários para Processar</h2>
+            <div id="beneficiarios-list" class="beneficiary-list">
+                </div>
+            <button id="processar-btn">3. Processar Custos (Aplicar Regras)</button>
+        </div>
+
+        <div class="results-section">
+            <h2>4. Resultados do Processamento</h2>
+            <div id="resultados-saida">
+                <p>Nenhum dado processado.</p>
+            </div>
+        </div>
+    </div> <footer>
+        <p>Desenvolvido por: Vitor Hugo tavares e Gustavo Borgonha</p>
+    </footer>
+
+    <script type="module" src="index.js"></script>
+</body>
+</html>
