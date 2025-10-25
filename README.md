@@ -2,14 +2,13 @@
 
 Aplicação web desenvolvida para a disciplina **Linguagem de Programação e Paradigmas** — Prof. Esp. Ademar Perfoll Junior.
 
-Este projeto aplica de forma rigorosa o **Paradigma de Programação Funcional (PF)** em JavaScript, simulando e calculando custos de um plano de saúde.  
-A aplicação garante **integridade dos dados**, utilizando **funções puras**, **imutabilidade** e **funções de ordem superior**.
+Este projeto foca na aplicação estrita do **Paradigma de Programação Funcional (PF)** em JavaScript para simular e calcular custos de um plano de saúde, garantindo a integridade dos dados através de **funções puras** e **imutabilidade**.
 
 ---
 
 ## 👥 Desenvolvedores
 
-- **Vitor Hugo Tavares**  
+- **Vitor Hugo Tavares**
 - **Gustavo Borgonha**
 
 Repositório oficial:  
@@ -19,26 +18,28 @@ Repositório oficial:
 
 ## 🎯 Objetivo do Projeto
 
-Implementar um programa prático e acessível utilizando JavaScript, com foco em:
+Implementar um programa prático e acessível utilizando JavaScript, com o objetivo principal de demonstrar:
 
 - **Funções Puras:** Lógica de negócio sem efeitos colaterais.  
 - **Imutabilidade:** Criação de novos estados de dados sem alterar os originais.  
-- **Funções de Ordem Superior:** Uso de `map`, `filter` e `reduce` para processamento declarativo.  
-- **Validação Pura:** Garantia da consistência dos dados de entrada antes do cálculo.
+- **Funções de Ordem Superior (HOCs):** Uso de `map`, `filter` e `reduce` para processamento declarativo de listas.  
+- **Validação Pura:** Garantia da consistência dos dados de entrada antes do cálculo.  
 
 ---
 
 ## ⚙️ Tecnologias Utilizadas
 
-- **JavaScript** (ES Modules — Programação Funcional)  
-- **HTML / CSS** (Interface cliente)  
-- **Live Server** (Extensão do VS Code para rodar ES Modules localmente)
+- **JavaScript** (ES Modules, para Programação Funcional)  
+- **HTML / CSS** (interface cliente)  
+- **Live Server** (Extensão do VS Code necessária para executar módulos JS localmente)
 
 ---
 
 ## 🚀 Guia de Instalação e Execução
 
 ### 🔧 1. Clonar o Repositório
+
+Obtenha uma cópia do código-fonte utilizando o comando `git clone` no seu terminal:
 
 ```bash
 git clone https://github.com/vitorunidavi/Plano_de_saude_Paradigma_Funcional.git
@@ -49,89 +50,71 @@ cd Plano_de_saude_Paradigma_Funcional
 
 ### 📦 2. Instalar Ferramentas (Live Server)
 
-O projeto utiliza **ES Modules**, que requerem execução via servidor local.  
-Para isso:
+O projeto usa **ES Modules** (`import/export`), exigindo um servidor local para execução.  
+Certifique-se de ter a ferramenta necessária para rodar o projeto localmente.  
 
-1. Abra o projeto no **VS Code**  
-2. Instale a extensão **Live Server** (Autor: Ritwick Dey)  
+No **VS Code**, siga os passos:
+
+1. Abra o projeto  
+2. Vá em **Extensões (Ctrl+Shift+X)**  
+3. Procure e instale **Live Server** (Autor: Ritwick Dey)  
 
 ---
 
 ### 🖥️ 3. Estrutura de Arquivos
 
+A pasta do projeto contém a estrutura modular necessária para a execução:
+
 ```
 plano-de-saude-funcional/
-├── index.html     # Interface e CSS
-├── index.js       # Fluxo de processamento e UI
-└── regras.js      # Funções Puras e Tabelas de Dados
+├── index.html     (Interface e CSS)
+├── index.js       (Fluxo de processamento e UI)
+└── regras.js      (Funções Puras e Tabelas de Dados)
 ```
 
 ---
 
 ### 🌐 4. Execução da Aplicação (No Navegador)
 
-1. Abra o projeto no VS Code  
-2. Clique com o botão direito em `index.html`  
-3. Selecione **“Open with Live Server”**  
-4. A aplicação abrirá automaticamente no navegador  
-
----
-
-## 🧩 Funcionamento do Sistema
-
-A aplicação calcula o custo total de um plano de saúde com base em:
-
-- Faixa etária do beneficiário  
-- Custos de procedimentos realizados  
-- Limites de coparticipação e franquias  
-
-Cada cálculo é realizado por **funções puras**, garantindo resultados determinísticos e previsíveis.
-
----
-
-## 🔁 Fluxo de Processamento Funcional
-
-| Etapa | Função | Entrada | Saída |
-|-------|---------|----------|-------|
-| 1️⃣ Mensalidade | `calcularMensalidade(idade)` | Idade = 21 (Faixa 19–23) | Mensalidade = **R$ 250,00** |
-| 2️⃣ Coparticipação | `calcularCustoProcedimento(valor)` | Valor = R$ 80,00 | Coparticipação = **R$ 24,00 (30%)** |
-| 3️⃣ Agregação | `reduce()` + Lógica de Franquia | Copart. Bruta = R$ 24,00 | Copart. Final = **R$ 24,00** |
-
-💰 **Custo Total Final = R$ 274,00**  
-(Mensalidade + Coparticipação Final)
+1. Abra o projeto no **VS Code**  
+2. Clique com o botão direito no arquivo `index.html`  
+3. Selecione **"Open with Live Server"**  
+4. O projeto será aberto no navegador  
 
 ---
 
 ## 🧠 Aplicação do Paradigma de Programação Funcional
 
-| Conceito | Implementação |
-|-----------|----------------|
-| **Imutabilidade** | Nenhum dado original é alterado; novas estruturas são criadas. |
-| **Funções Puras** | `calcularMensalidade` e `calcularCustoProcedimento` não dependem de estado externo. |
-| **Funções de Ordem Superior** | Uso de `filter`, `map` e `reduce` para processar listas de beneficiários e custos. |
-| **Validação Pura** | Filtragem de entradas inválidas antes de qualquer cálculo. |
+O sistema utiliza o paradigma **PF** através de:
+
+### 🧩 Imutabilidade  
+Os dados de entrada (regras e beneficiários) **nunca são alterados**.  
+Novas informações (custos) são retornadas em **novos objetos**.
+
+### ⚙️ Funções Puras  
+As regras de cálculo (`calcularMensalidade`, `calcularCustoProcedimento`) **não dependem de estado externo** e **não causam efeitos colaterais**.
+
+### 🔁 Fluxo com HOCs  
+
+| HOC | Propósito Funcional |
+|-----|----------------------|
+| `filter()` | Validação Pura — Remove dados inválidos antes de qualquer cálculo |
+| `map()` | Transformação — Calcula a mensalidade e a coparticipação para cada beneficiário e procedimento |
+| `reduce()` | Agregação — Soma os custos para chegar ao valor total final |
 
 ---
 
-## 💡 Exemplo Simplificado de Código
+## 💡 Exemplo de Processamento Funcional
 
-```js
-// Função pura: cálculo de mensalidade por faixa etária
-const calcularMensalidade = (idade) => {
-  if (idade <= 18) return 200;
-  if (idade <= 23) return 250;
-  if (idade <= 28) return 320;
-  return 400;
-};
+Para ilustrar o fluxo, considere o cálculo de um beneficiário que usa um procedimento:
 
-// Uso funcional com map e reduce
-const beneficiarios = [19, 25, 30];
-const total = beneficiarios
-  .map(calcularMensalidade)
-  .reduce((acc, valor) => acc + valor, 0);
+| Passo | Função | Dados de Entrada | Saída (Transformação) |
+|-------|---------|------------------|------------------------|
+| 1️⃣ | `calcularMensalidade(idade)` | Idade = 21 (Faixa 19–23) | Mensalidade = **R$ 250,00** |
+| 2️⃣ | `calcularCustoProcedimento(valor)` | Valor = R$ 80,00 | Coparticipação Bruta = **R$ 24,00 (30%)** |
+| 3️⃣ | `reduce()` + Lógica de Franquia | Copart. Bruta = R$ 24,00 (Limite de R$ 300,00) | Copart. Final = **R$ 24,00** |
 
-console.log(total); // Resultado: 970
-```
+💰 **Custo Total Final (Mensalidade + Coparticipação Final) = R$ 274,00**
 
 ---
 
