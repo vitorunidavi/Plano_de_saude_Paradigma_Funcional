@@ -1,119 +1,133 @@
-# 👨‍⚕️ Análise Funcional de Custos de Plano de Saúde
+🩺 Análise Funcional de Custos de Plano de Saúde
 
-Aplicação web desenvolvida para a disciplina **Linguagem de Programação e Paradigmas** — Prof. Esp. Ademar Perfoll Junior.
+Aplicação web desenvolvida para a disciplina Linguagem de Programação e Paradigmas — Prof. Esp. Ademar Perfoll Junior.
 
-Este projeto foca na aplicação estrita do **Paradigma de Programação Funcional (PF)** em JavaScript para simular e calcular custos de um plano de saúde, garantindo a integridade dos dados através de **funções puras** e **imutabilidade**.
+Este projeto aplica o Paradigma de Programação Funcional (PF) em JavaScript, simulando e calculando os custos de um plano de saúde.
+Toda a lógica é construída sobre funções puras e imutabilidade, garantindo previsibilidade e consistência nos resultados.
 
-## 👥 Desenvolvedores
+👥 Desenvolvedores
 
-* [Vitor Hugo Tavares]
-* [Gustavo Borgonha]
+Vitor Hugo Tavares
+
+Gustavo Borgonha
 
 Repositório oficial:
 https://github.com/vitorunidavi/Plano_de_saude_Paradigma_Funcional
 
----
+🎯 Objetivo do Projeto
 
-## 🎯 Objetivo do Projeto
+Implementar uma aplicação prática e acessível utilizando JavaScript Funcional, demonstrando:
 
-Implementar um programa prático e acessível utilizando JavaScript, com o objetivo principal de demonstrar:
-* **Funções Puras:** Lógica de negócio sem efeitos colaterais.
-* **Imutabilidade:** Criação de novos estados de dados sem alterar os originais.
-* **Funções de Ordem Superior (HOCs):** Uso de `map`, `filter` e `reduce` para processamento declarativo de listas.
-* **Validação Pura:** Garantia da consistência dos dados de entrada antes do cálculo.
+🧩 Funções Puras: Lógica sem efeitos colaterais.
 
----
+🔒 Imutabilidade: Criação de novos estados de dados sem alterar os originais.
 
-## ⚙️ Tecnologias Utilizadas
+⚙️ Funções de Ordem Superior (HOCs): Uso de map, filter e reduce para o processamento declarativo de listas.
 
-* **JavaScript (ES Modules):** Linguagem principal, permitindo a modularização do código (`regras.js` e `index.js`).
-* **HTML / CSS:** Interface do usuário (UI) para entrada e exibição de dados.
-* **Node.js / Live Server:** Utilizados para executar o projeto e a interface via servidor local (necessário para o uso de `import`/`export`).
+✅ Validação Pura: Garantia de consistência nos dados antes do cálculo.
 
----
+⚙️ Tecnologias Utilizadas
 
-## 🧪 Tema Implementado: Plano de Saúde (Faixa Etária, Coparticipação e Franquias)
+JavaScript (ES Modules) — Linguagem principal com modularização (regras.js e index.js)
 
-O sistema simula as regras de precificação e custo de procedimentos de um plano de saúde:
+HTML / CSS — Interface de entrada e exibição de dados
 
-| Tipo | Descrição |
-| :--- | :--- |
-| **Entrada (Input)** | Lista de Beneficiários (Nome, Idade) e seus Procedimentos utilizados (Nome, Valor de Referência). |
-| **Regras (Lógica)** | 1. Mensalidade baseada na Faixa Etária. <br> 2. Cálculo da Coparticipação por Procedimento (percentual). <br> 3. Limite Máximo de Coparticipação Mensal (Franquia/Dedutível). |
-| **Saída (Output)** | Custo Total por Beneficiário (Mensalidade + Coparticipação Final) e o detalhamento do custo por Procedimento. |
-| **Invariantes** | A Coparticipação paga nunca pode exceder o valor do procedimento e deve respeitar o limite máximo mensal. |
+Node.js / Live Server — Execução local do projeto (necessário para import/export)
 
----
+🧪 Tema Implementado — Plano de Saúde
 
-## 🧠 Aplicação do Paradigma de Programação Funcional
+(Faixa Etária, Coparticipação e Franquias)
 
-A lógica de processamento (`index.js`) é construída sobre funções puras definidas em `regras.js`, garantindo que a aplicação das regras seja previsível e sem estado.
+O sistema simula as regras de precificação e custo de procedimentos de um plano de saúde.
 
-### 1. Funções Puras e Imutabilidade
+Tipo	Descrição
+Entrada (Input)	Lista de Beneficiários (Nome, Idade) e Procedimentos utilizados (Nome, Valor).
+Regras (Lógica)	1️⃣ Mensalidade baseada na Faixa Etária.
+2️⃣ Cálculo da Coparticipação (%).
+3️⃣ Limite Máximo de Coparticipação Mensal (Franquia).
+Saída (Output)	Custo Total por Beneficiário (Mensalidade + Coparticipação Final).
+Invariantes	Coparticipação nunca excede o valor do procedimento e respeita o limite mensal.
+🧠 Aplicação do Paradigma de Programação Funcional
 
-Todas as funções de cálculo (`calcularMensalidade`, `calcularCustoProcedimento`, `processarBeneficiario`) são puras:
-* Recebem uma entrada e **sempre retornam o mesmo resultado** para a mesma entrada.
-* Não alteram o estado global.
-* A **Imutabilidade** é garantida pelo retorno de **novos objetos de dados** em cada etapa de processamento, utilizando o *spread operator* (`...`). As tabelas de regras são estáticas (`const`).
+Toda a lógica do projeto está contida em funções puras definidas em regras.js.
+Essas funções processam os dados de entrada em um pipeline funcional, garantindo imutabilidade e ausência de efeitos colaterais.
 
-### 2. Fluxo de Processamento com HOCs
+🔹 1. Funções Puras e Imutabilidade
 
-O cálculo de custos é um pipeline de transformação de dados, utilizando as Funções de Ordem Superior:
+Funções como calcularMensalidade, calcularCustoProcedimento e processarBeneficiario são puras.
 
-| HOC | Função Aplicada | Objetivo |
-| :--- | :--- | :--- |
-| **`Array.prototype.filter()`** | `validarBeneficiario` | Descarta beneficiários com entradas inválidas (idade ou valores não-positivos) antes de qualquer cálculo. |
-| **`Array.prototype.map()`** | `processarBeneficiario` | Transforma cada beneficiário válido em seu objeto de **Saída Final**, que inclui todos os custos calculados. |
-| **`Array.prototype.reduce()`** | Função de soma | Agrega os custos de Coparticipação de todos os procedimentos de um beneficiário em um único valor (Coparticipação Bruta). |
+Sempre retornam o mesmo resultado para a mesma entrada.
 
----
+Criam novos objetos em cada etapa (uso do operador spread ...).
 
-### 3. Exemplo de Processamento (Entrada e Saída)
+🔹 2. Fluxo de Processamento com HOCs
+HOC	Função Aplicada	Finalidade
+filter()	validarBeneficiario	Remove beneficiários com dados inválidos.
+map()	processarBeneficiario	Gera o objeto de saída com custos calculados.
+reduce()	Soma dos valores	Agrega custos de todos os procedimentos.
+💡 Exemplo de Processamento
 
-Para ilustrar a aplicação das regras, considere o seguinte fluxo de dados:
+Entrada:
 
-**A. Dados de Entrada:**
-| Beneficiário | Idade | Faixa | Procedimento | Valor (R$) | % Copart. (Tabela) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Alice | 21 | 19-23 | Consulta Clínica | 80.00 | 30% |
-| *(Regra Adicional: Limite Mensal de Coparticipação: R$ 300,00)* |
+Beneficiário	Idade	Faixa	Procedimento	Valor (R$)	% Copart.
+Alice	21	19–23	Consulta Clínica	80,00	30%
 
-**B. Cálculos Aplicados:**
-1. **Mensalidade (Faixa 19-23):** R$ 250,00
-2. **Coparticipação Bruta:** R$ 80,00 * 30% = R$ 24,00
-3. **Coparticipação Final (Após Franquia):** R$ 24,00 (menor que o limite de R$ 300,00)
+Regras Aplicadas:
+1️⃣ Mensalidade: R$ 250,00
+2️⃣ Coparticipação Bruta: R$ 80,00 × 30% = R$ 24,00
+3️⃣ Limite Mensal: R$ 300,00 → válido
 
-**C. Saída (Custo Final por Beneficiário):**
-* **Mensalidade:** R$ 250,00
-* **Coparticipação Total:** R$ 24,00
-* **Custo Total Final:** R$ 274,00
+Saída Final:
 
----
+Mensalidade: R$ 250,00
 
-## 🚀 Guia de Instalação e Execução
+Coparticipação: R$ 24,00
 
-### 🔧 1. Estrutura de Arquivos
+Total Final: R$ 274,00
 
-Certifique-se de que a pasta do seu projeto contém a seguinte estrutura:
+🚀 Guia de Instalação e Execução
 
-plano-de-saude-funcional/ ├── index.html (Interface e CSS) ├── index.js (Fluxo de processamento e UI) └── regras.js (Funções Puras e Tabelas de Dados) └── README.md
+O projeto é executado inteiramente no navegador, aproveitando o sistema de módulos JavaScript (ES Modules).
 
+🔧 1. Clonar o Repositório
 
-### 🖥️ 2. Execução (No Navegador)
+Obtenha uma cópia do código-fonte utilizando o comando git clone no seu terminal:
 
-1.  No VS Code, clique com o botão direito no arquivo **`index.html`**.
-2.  Selecione **"Open with Live Server"**.
-3.  A aplicação será aberta no seu navegador padrão (`http://127.0.0.1:5500/...`).
-4.  Utilize a interface para adicionar beneficiários e clicar em **"Processar Custos"** para visualizar a aplicação das regras funcionais.
+git clone https://github.com/vitorunidavi/Plano_de_saude_Paradigma_Funcional.git
+cd Plano_de_saude_Paradigma_Funcional
 
----
+🧩 2. Instalação de Ferramentas (VS Code)
 
-## 🖋️ Créditos
+Para garantir que o import/export funcione corretamente, é necessário rodar o projeto em um servidor local.
+
+Instale a extensão Live Server no VS Code (Autor: Ritwick Dey).
+
+📁 3. Estrutura de Arquivos
+
+A pasta do projeto contém a estrutura modular necessária para a execução:
+
+plano-de-saude-funcional/
+├── index.html     (Interface e CSS)
+├── index.js       (Fluxo de processamento e UI)
+└── regras.js      (Funções Puras e Tabelas de Dados)
+
+🖥️ 4. Execução (No Navegador)
+
+Abra a pasta do projeto no VS Code.
+
+Clique com o botão direito no arquivo index.html.
+
+Selecione “Open with Live Server”.
+
+A aplicação será aberta no seu navegador, pronta para testar o fluxo funcional.
+
+🖋️ Créditos
 
 Desenvolvido por:
-* Gustavo Borgonha
-* Vitor Hugo Tavares
+👨‍💻 Gustavo Borgonha
+👨‍💻 Vitor Hugo Tavares
 
 📚 Curso: Sistemas de Informação
-🏫 Universidade — Disciplina: Linguagem de Programação e Paradigmas
-👨‍🏫 Professor: Esp. Ademar Perfoll Junior
+🏫 Universidade: [Nome da Instituição, se desejar incluir]
+👨‍🏫 Disciplina: Linguagem de Programação e Paradigmas
+🧑‍🏫 Professor: Esp. Ademar Perfoll Junior
